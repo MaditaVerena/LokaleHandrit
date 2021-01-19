@@ -15,9 +15,9 @@ import os
 
 import copy
 
-# Insert URL(s) here. To harvest only specific images of one manuscript, see below.
+# Insert URL(s) here. To harvest only specific images of one (!) manuscript, see below.
 
-myURLList = ["https://handrit.is/is/manuscript/xml/LbsFragm-0082-is.xml", "https://handrit.is/is/manuscript/xml/LbsFragm-0081-is.xml"]
+myURLList = ["https://handrit.is/is/manuscript/xml/Lbs02-0187-is.xml"]
 
 def get_soup(url):
     sauce = urllib.request.urlopen(url).read()
@@ -83,13 +83,13 @@ for url, result in list_of_results:
         img = vals[1]
         name = vals[2]
 
-        # To harvest pages in the range of 66 to 98, insert <= 65 and >= 99 in the following if-condition.
+        # To harvest pages in the range of 66 to 98, insert < 66 and > 98 in the following if-condition.
         # This works for one MS only (see myURLs above).
         # To download all images, comment out the following if-condition.
 
-        # page = int(id)
-        # if page <=  65 or page >=  99:
-        #    continue
+        page = int(id)
+        if page < 420 or page > 465:
+            continue
 
         save_image(id, img, name)
     print('\n------------------\n')
